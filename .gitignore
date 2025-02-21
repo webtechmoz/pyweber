@@ -1,0 +1,5 @@
+build/
+dist/
+pyflet.egg-info/
+templates/
+main.py
