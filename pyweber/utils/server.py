@@ -111,7 +111,7 @@ class Server:
         response = response.encode() + file_content
 
         if '/ping' not in request:
-            print(f"{self.__curr_time} - {request.split('\n')[0].strip()} {response_code}")
+            print(f"{self.__curr_time} - {request.split('\\n')[0].strip()} {response_code}")
         
         return response
 
