@@ -9,6 +9,6 @@ python:
    install:
    - requirements: docs/requirements.txt
 
-sphinx:
-  builder: "mkdocs"
+mkdocs:
+  configuration: mkdocs.yml
         
