@@ -27,6 +27,7 @@ jobs:
         source venv/bin/activate
         pip install --upgrade pip
         pip install -r requirements.txt  # Instala as dependências do projeto
+        pip install pytest  # Certifica-se de que pytest está instalado
         pip install .  # Instala o pacote pyweber localmente
 
     - name: Run tests
