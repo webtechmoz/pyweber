@@ -25,16 +25,6 @@ To create a new PyWeber project, use the following command:
 pyweber create-new <project_name>
 ```
 
-This will create a new project with the following structure:
-```css
-<project_name>
-│
-├── src
-├── templates
-├── main.py
-```
-The main.py file will contain the basic structure for your application.
-
 ### Running the Project
 To run your PyWeber project, use the command:
 
@@ -42,6 +32,17 @@ To run your PyWeber project, use the command:
 pyweber run
 ```
 This will start the project and you can begin developing your web application.
+
+### Example
+```python
+import pyweber as pw
+
+def main(app: pw.Router):
+    app.add_route(route='/', template=pw.Template(template='🚀 Hello, world'))
+
+if __name__ == '__main__':
+    pw.run(target=main)
+```
 
 ## Contributing
 Feel free to contribute by opening issues or submitting pull requests. Your contributions are highly appreciated!
@@ -52,4 +53,4 @@ PyWeber is licensed under the MIT License. See the LICENSE file for more details
 ## Contacts
 Author: DevPythonMZ
 Email: zoidycine@gmail.com
-GitHub: https://github.com/webtechmoz/pyweb
+GitHub: https://github.com/webtechmoz/pyweber

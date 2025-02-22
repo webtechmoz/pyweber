@@ -3,4 +3,9 @@ dist/
 pyflet.egg-info/
 templates/
 pyweber.egg-info/.*
+pyweber/docs/
+site/
+
+# files do ignore
+.readthedocs.yaml
 main.py
