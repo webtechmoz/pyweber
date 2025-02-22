@@ -1,7 +1,7 @@
 import os
 import pytest
 from typer.testing import CliRunner
-from pyweber.utils.pyweber_cli import app  # Altere conforme o nome do seu arquivo de CLI
+from pyweber.utils.pyweber_cli import app
 
 runner = CliRunner()
 
