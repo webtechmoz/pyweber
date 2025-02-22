@@ -19,7 +19,14 @@ setup(
     description='A lightweight Python framework for building and managing web applications.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/webtechmoz/pyweb',
+    url='https://pyweber.readthedocs.io/en/latest',
+    project_urls={
+        'Documentation': 'https://pyweber.readthedocs.io/en/latest',
+        'Source Code': 'https://github.com/webtechmoz/pyweber',
+        'Issue Tracker': 'https://github.com/webtechmoz/pyweber/issues',
+        'PyPI': 'https://pypi.org/project/pyweber/',
+        'Youtube': 'https://youtube.com/@devpythonMZ'
+    },
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
