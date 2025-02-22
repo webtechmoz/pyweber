@@ -2,4 +2,5 @@ build/
 dist/
 pyflet.egg-info/
 templates/
+pyweb.egg-info/
 main.py

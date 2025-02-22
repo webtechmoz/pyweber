@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='pyweb',
-    version='0.1.0',
-    packages=find_packages(include=['pyweb', 'pyweb.*']),
+    name='pyweber',
+    version='0.1.1',
+    packages=find_packages(include=['pyweber', 'pyweber.*']),
     install_requires=[
         'websockets',
         'watchdog',
@@ -11,7 +11,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'pyweb=pyweb.utils.pyweb_cli:app',
+            'pyweber=pyweber.utils.pyweber_cli:app',
         ],
     },
     author='DevPythonMZ',
