@@ -1,5 +1,7 @@
 # PyWeber - A Lightweight Python Framework
 
+<img src="https://pyweber.readthedocs.io/en/latest/images/pyweber.png" alt="PyWeber Logo">
+
 PyWeber is a lightweight Python framework designed for building and managing web applications with ease. It allows you to quickly create web projects, manage templates, static files, and run a web server, all with minimal configuration.
 
 ## Features
@@ -51,6 +53,6 @@ Feel free to contribute by opening issues or submitting pull requests. Your cont
 PyWeber is licensed under the MIT License. See the LICENSE file for more details.
 
 ## Contacts
-Author: DevPythonMZ
-Email: zoidycine@gmail.com
-GitHub: https://github.com/webtechmoz/pyweber
+- Author: DevPythonMZ
+- Email: zoidycine@gmail.com
+- GitHub: https://github.com/webtechmoz/pyweber

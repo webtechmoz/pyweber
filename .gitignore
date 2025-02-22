@@ -2,9 +2,10 @@ build/
 dist/
 pyflet.egg-info/
 templates/
-pyweber.egg-info/.*
+pyweber.egg-info/
 pyweber/docs/
 site/
 
 # files do ignore
 main.py
+pyproject.toml
