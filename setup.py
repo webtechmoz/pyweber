@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyweber',
-    version='0.1.5',
+    version='0.1.6',
     packages=find_packages(include=['pyweber', 'pyweber.*']),
     install_requires=[
         'websockets',
