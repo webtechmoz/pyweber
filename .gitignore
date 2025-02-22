@@ -7,5 +7,4 @@ pyweber/docs/
 site/
 
 # files do ignore
-.readthedocs.yaml
 main.py
