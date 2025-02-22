@@ -93,7 +93,7 @@ PAGE_NOT_FOUND_TEMPLATE = """
 </html>
 """
 
-BASE_MAIN = '''import pyweb as pw
+BASE_MAIN = '''import pyweber as pw
 
 def main(app: pw.Router):
     app.add_route(route='/', template=pw.Template(template='index.html'))
