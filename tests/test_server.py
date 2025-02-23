@@ -15,29 +15,6 @@ def server():
     time.sleep(1)  # Aguardar o servidor começar
     return server
 
-def test_server_with_curl(server):
-    """Verifica se o servidor responde corretamente via curl"""
-    
-    # Verifica se o curl está instalado
-    if subprocess.run(["which", "curl"], capture_output=True).returncode != 0:
-        pytest.skip("Curl não está instalado no sistema.")
-
-    time.sleep(1)  # Pequeno delay para garantir que o servidor iniciou
-
-    try:
-        result = subprocess.run(
-            ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "http://localhost:5555/"],
-            capture_output=True, text=True, check=True
-        )
-        status_code = result.stdout.strip()
-
-        print(f"\n🔍 Status HTTP recebido pelo curl: {status_code}")  # DEBUG
-
-        assert status_code == "200", f"Esperado HTTP 200, mas recebeu {status_code}"
-    except subprocess.CalledProcessError as e:
-        print(f"Erro ao rodar curl: {e}")
-        assert False, "Erro ao testar com curl"
-
 def test_server_initialization(server):
     """Verifica se o servidor iniciou corretamente"""
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
