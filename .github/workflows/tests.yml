@@ -54,7 +54,7 @@ jobs:
     - name: Run tests and send coverage to Coveralls
       run: |
         source venv/bin/activate
-        pytest --cov=tests --cov-report=term-missing
+        pytest --cov=pyweber.utils --cov-report=term-missing
         coveralls
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -2,7 +2,7 @@
 
 <img src="https://pyweber.readthedocs.io/en/latest/images/pyweber.png" alt="PyWeber Logo">
 
-[![PyPI version](https://img.shields.io/pypi/v/pyweber.svg)](https://pypi.org/project/pyweber/) [![Coverage Status](https://coveralls.io/repos/github/webtechmoz/pyweber/badge.svg?branch=main)](https://coveralls.io/github/webtechmoz/pyweber?branch=master) [![License](https://img.shields.io/pypi/l/pyweber.svg)](https://github.com/webtechmoz/pyweber/blob/main/LICENSE)
+[![PyPI version](https://img.shields.io/pypi/v/pyweber.svg)](https://pypi.org/project/pyweber/) [![Coverage Status](https://coveralls.io/repos/github/webtechmoz/pyweber/badge.svg?branch=master)](https://coveralls.io/github/webtechmoz/pyweber?branch=master) [![License](https://img.shields.io/pypi/l/pyweber.svg)](https://github.com/webtechmoz/pyweber/blob/master/LICENSE)
 
 PyWeber is a lightweight Python framework designed for building and managing web applications with ease. It allows you to quickly create web projects, manage templates, static files, and run a web server, all with minimal configuration.
 
