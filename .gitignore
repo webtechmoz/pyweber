@@ -11,4 +11,5 @@ __pycache__/
 main.py
 pyproject.toml
 gitpush.py
+gitpush_pypi_upload.py
 .coverage
