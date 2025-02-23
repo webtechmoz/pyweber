@@ -2,20 +2,19 @@ import pytest
 import socket
 import threading
 import time
-import subprocess
 
 from pyweber.utils.server import Server, Router, Template
 
-@pytest.fixture
-def server():
-    router = Router()
-    router.add_route('/', template=Template(template='test_template.html'))
-    server = Server(router)
-    threading.Thread(target=server.create_server, args=('localhost', 5555, '/'), daemon=True).start()
-    time.sleep(1)  # Aguardar o servidor começar
-    return server
+# @pytest.fixture
+# def server():
+#     router = Router()
+#     router.add_route('/', template=Template(template='test_template.html'))
+#     server = Server(router)
+#     threading.Thread(target=server.create_server, args=('localhost', 5555, '/'), daemon=True).start()
+#     time.sleep(1)  # Aguardar o servidor começar
+#     return server
 
-def test_server_initialization(server):
+def test_server_initialization():
     """Verifica se o servidor iniciou corretamente"""
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
@@ -28,10 +27,8 @@ def test_server_initialization(server):
     finally:
         client_socket.close()
 
-def test_route_response(server):
+def test_route_response():
     """Verifica se o servidor retorna o template correto para uma rota existente"""
-    # template = Template("Hello world")  # Supondo que você tenha esse template de teste
-    # server._Server__router.add_route("/home", template)
     
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
@@ -43,7 +40,7 @@ def test_route_response(server):
     finally:
         client_socket.close()
 
-def test_static_file_response(server):
+def test_static_file_response():
     """Verifica se o servidor retorna um arquivo estático corretamente"""
     # Simula o caminho para um arquivo estático
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -56,7 +53,7 @@ def test_static_file_response(server):
     finally:
         client_socket.close()
 
-def test_route_not_found(server):
+def test_route_not_found():
     """Verifica se o servidor retorna 404 para uma rota inexistente"""
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
@@ -68,11 +65,8 @@ def test_route_not_found(server):
     finally:
         client_socket.close()
 
-def test_reload_code(server):
+def test_reload_code():
     """Verifica se o código de recarga é adicionado ao template quando recarregado"""
-    # template = Template('test_template.html')
-    # server._Server__reload = True  # Habilita a recarga
-    # server._Server__router.add_route('/', template)
     
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
