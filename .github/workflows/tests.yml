@@ -28,6 +28,7 @@ jobs:
         pip install --upgrade pip
         pip install -r requirements.txt
         pip install pytest
+        pip install coveralls
         pip install .
 
     - name: Start server
@@ -48,7 +49,12 @@ jobs:
         done
         echo "❌ O servidor não iniciou corretamente!"
         exit 1
-
+    
+    - name: Run tests and send coverage to Coveralls
+      run: |
+        source venv/bin/activate
+        pytest --cov=pyweber --cov-report=term-missing
+        coveralls
 
     - name: Run tests
       run: |
