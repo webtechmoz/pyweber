@@ -46,7 +46,7 @@ def test_static_file_response():
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         client_socket.connect(('localhost', 5555))
-        client_socket.sendall(b"GET /static/style.css HTTP/1.1\r\nHost: localhost\r\n\r\n")
+        client_socket.sendall(b"GET /tests/static/style.css HTTP/1.1\r\nHost: localhost\r\n\r\n")
         response = client_socket.recv(1024).decode()
         assert "HTTP/1.1 200 OK" in response  # Resposta de sucesso
         assert "Content-Type: text/css" in response  # Verifica se o tipo de conteúdo está correto
