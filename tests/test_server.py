@@ -5,16 +5,28 @@ import time
 
 from pyweber.utils.server import Server, Router, Template
 
-# @pytest.fixture
-# def server():
-#     router = Router()
-#     router.add_route('/', template=Template(template='test_template.html'))
-#     server = Server(router)
-#     threading.Thread(target=server.create_server, args=('localhost', 5555, '/'), daemon=True).start()
-#     time.sleep(1)  # Aguardar o servidor começar
-#     return server
+@pytest.fixture
+def server():
+    router = Router()
+    router.add_route('/', template=Template(
+        template='<html><head><title>Pytest Greetings</title></head><body>Pytest greetings: hello world</body></html>')
+    )
+    server = Server(router)
 
-def test_server_initialization():
+    # Função para iniciar o servidor
+    def start_server():
+        server.create_server('localhost', 5555, '/')
+
+    # Thread para rodar o servidor
+    server_thread = threading.Thread(target=start_server, daemon=True)
+    server_thread.start()
+
+    # Aguardar um tempo para garantir que o servidor esteja rodando
+    time.sleep(1)
+
+    return server
+
+def test_server_initialization(server):
     """Verifica se o servidor iniciou corretamente"""
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:

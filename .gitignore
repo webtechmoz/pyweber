@@ -5,8 +5,10 @@ templates/
 pyweber.egg-info/.*
 pyweber/docs/
 site/
+__pycache__/
 
 # files do ignore
 main.py
 pyproject.toml
 gitpush.py
+.coverage
