@@ -2,7 +2,7 @@ build/
 dist/
 pyflet.egg-info/
 templates/
-pyweber.egg-info/
+pyweber.egg-info/.*
 pyweber/docs/
 site/
 

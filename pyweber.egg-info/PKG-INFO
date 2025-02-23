@@ -1,10 +1,15 @@
 Metadata-Version: 2.2
 Name: pyweber
-Version: 0.1.4
+Version: 0.1.6
 Summary: A lightweight Python framework for building and managing web applications.
-Home-page: https://github.com/webtechmoz/pyweb
+Home-page: https://pyweber.readthedocs.io/en/latest
 Author: DevPythonMZ
 Author-email: zoidycine@egmail.com
+Project-URL: Documentation, https://pyweber.readthedocs.io/en/latest
+Project-URL: Source Code, https://github.com/webtechmoz/pyweber
+Project-URL: Issue Tracker, https://github.com/webtechmoz/pyweber/issues
+Project-URL: PyPI, https://pypi.org/project/pyweber/
+Project-URL: Youtube, https://youtube.com/@devpythonMZ
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
@@ -20,11 +25,16 @@ Dynamic: classifier
 Dynamic: description
 Dynamic: description-content-type
 Dynamic: home-page
+Dynamic: project-url
 Dynamic: requires-dist
 Dynamic: requires-python
 Dynamic: summary
 
 # PyWeber - A Lightweight Python Framework
+
+<img src="https://pyweber.readthedocs.io/en/latest/images/pyweber.png" alt="PyWeber Logo">
+
+[![PyPI version](https://img.shields.io/pypi/v/pyweber.svg)](https://pypi.org/project/pyweber/) [![Coverage Status](https://coveralls.io/repos/github/webtechmoz/pyweber/badge.svg?branch=main)](https://coveralls.io/github/webtechmoz/pyweber?branch=master) [![License](https://img.shields.io/pypi/l/pyweber.svg)](https://github.com/webtechmoz/pyweber/blob/main/LICENSE)
 
 PyWeber is a lightweight Python framework designed for building and managing web applications with ease. It allows you to quickly create web projects, manage templates, static files, and run a web server, all with minimal configuration.
 
@@ -77,6 +87,6 @@ Feel free to contribute by opening issues or submitting pull requests. Your cont
 PyWeber is licensed under the MIT License. See the LICENSE file for more details.
 
 ## Contacts
-Author: DevPythonMZ
-Email: zoidycine@gmail.com
-GitHub: https://github.com/webtechmoz/pyweber
+- Author: DevPythonMZ
+- Email: zoidycine@gmail.com
+- GitHub: https://github.com/webtechmoz/pyweber

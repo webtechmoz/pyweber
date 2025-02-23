@@ -18,6 +18,7 @@ def test_server_initialization(server):
     """Verifica se o servidor iniciou corretamente"""
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
+        time.sleep(1)
         client_socket.connect(('localhost', 5555))
         client_socket.sendall(b"GET / HTTP/1.1\r\nHost: localhost\r\n\r\n")
         response = client_socket.recv(1024).decode()
@@ -32,6 +33,7 @@ def test_route_response(server):
     
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
+        time.sleep(1)
         client_socket.connect(('localhost', 5555))
         client_socket.sendall(b"GET / HTTP/1.1\r\nHost: localhost\r\n\r\n")
         response = client_socket.recv(1024).decode()
@@ -45,6 +47,7 @@ def test_static_file_response(server):
     # Simula o caminho para um arquivo estático
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
+        time.sleep(1)
         client_socket.connect(('localhost', 5555))
         client_socket.sendall(b"GET /static/style.css HTTP/1.1\r\nHost: localhost\r\n\r\n")
         response = client_socket.recv(1024).decode()
@@ -57,6 +60,7 @@ def test_route_not_found(server):
     """Verifica se o servidor retorna 404 para uma rota inexistente"""
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
+        time.sleep(1)
         client_socket.connect(('localhost', 5555))
         client_socket.sendall(b"GET /unknown HTTP/1.1\r\nHost: localhost\r\n\r\n")
         response = client_socket.recv(1024).decode()
@@ -73,6 +77,7 @@ def test_reload_code(server):
     
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
+        time.sleep(1)
         client_socket.connect(('localhost', 5555))
         client_socket.sendall(b"GET / HTTP/1.1\r\nHost: localhost\r\n\r\n")
         response = client_socket.recv(1024).decode()
