@@ -53,10 +53,5 @@ jobs:
     - name: Run tests and send coverage to Coveralls
       run: |
         source venv/bin/activate
-        pytest --cov=pyweber --cov-report=term-missing
+        pytest tests --cov=pyweber --cov-report=term-missing --maxfail=1 --disable-warnings -q
         coveralls
-
-    - name: Run tests
-      run: |
-        source venv/bin/activate
-        pytest tests --maxfail=1 --disable-warnings -q
