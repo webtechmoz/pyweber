@@ -17,6 +17,7 @@ pyweber/utils/router.py
 pyweber/utils/server.py
 pyweber/utils/static_files.py
 pyweber/utils/template.py
+tests/test_app.py
 tests/test_cli.py
 tests/test_router.py
 tests/test_server.py
