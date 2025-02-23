@@ -19,18 +19,31 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.10'  # Certifique-se de que está usando a versão correta do Python
+        python-version: '3.10'
 
     - name: Install dependencies
       run: |
         python -m venv venv
         source venv/bin/activate
         pip install --upgrade pip
-        pip install -r requirements.txt  # Instala as dependências do projeto
-        pip install pytest  # Certifica-se de que pytest está instalado
-        pip install .  # Instala o pacote pyweber localmente
+        pip install -r requirements.txt
+        pip install pytest
+        pip install .  
+
+    - name: Start server
+      run: |
+        source venv/bin/activate
+        nohup python3 -c "from pyweber.utils.server import Server; Server(None).run()" > server.log 2>&1 &
+        sleep 5  # Espera o servidor iniciar
+
+    - name: Check if server is running
+      run: |
+        if ! curl -s http://localhost:5555/; then
+          echo "❌ O servidor não iniciou corretamente!"
+          exit 1
+        fi
 
     - name: Run tests
       run: |
         source venv/bin/activate
-        pytest tests --maxfail=1 --disable-warnings -q  # Executa os testes
+        pytest tests --maxfail=1 --disable-warnings -q
