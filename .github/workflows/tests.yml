@@ -33,7 +33,7 @@ jobs:
     - name: Start server
       run: |
         source venv/bin/activate
-        python3 -c "from pyweber.utils.router import Router, Template; from pyweber.utils.server import Server; router = Router(); router.add_route('/', Template('Pytest greetings: hello world')); server = Server(router); server.run()" &
+        python3 -c "from pyweber.utils.router import Router, Template; from pyweber.utils.server import Server; router = Router(); router.add_route('/', Template('<html><head><title Pytest Greetings/></head><body>Pytest greetings: hello world</body></html>')); server = Server(router); server.run()" &
         sleep 5  # Dê tempo suficiente para o servidor iniciar
 
     - name: Wait for server to be ready
