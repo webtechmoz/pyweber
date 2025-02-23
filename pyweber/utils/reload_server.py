@@ -5,13 +5,13 @@ from http.server import SimpleHTTPRequestHandler
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-class MyHandler(SimpleHTTPRequestHandler):
-    def do_GET(self):
-        if self.path == "/ping":
-            self.send_response(200)
-            self.end_headers()
-            return
-        return super().do_GET()
+# class MyHandler(SimpleHTTPRequestHandler):
+#     def do_GET(self):
+#         if self.path == "/ping":
+#             self.send_response(200)
+#             self.end_headers()
+#             return
+#         return super().do_GET()
 
 class ReloadServer:
     def __init__(self):

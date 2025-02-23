@@ -168,8 +168,8 @@ class Server:
         self.__reload = reload
         if self.__reload:
             reload_server = ReloadServer()
-            server = HTTPServer(("localhost", port+1), MyHandler)
+            # server = HTTPServer(("localhost", port+1), MyHandler)
             threading.Thread(target=reload_server.run, daemon=True).start()
-            threading.Thread(target=server.serve_forever, daemon=True).start()
+            # threading.Thread(target=server.serve_forever, daemon=True).start()
         
         self.create_server(route=route, port=port)
