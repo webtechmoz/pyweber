@@ -67,7 +67,8 @@ def test_redirect(router):
     to_template = Template('New Hello world')
     router.add_route('/home', from_template)
     router.add_route('/about', to_template)
-    result = router.redirect('/home', '/about')
+    router.redirect('/home', '/about')
+    result = router._Router__get_route(route='/home')
     assert result == to_template._Template__render_template
 
 # Testar redirecionamento com rota de origem inexistente
