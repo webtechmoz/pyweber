@@ -5,7 +5,7 @@ from datetime import datetime
 from http.server import HTTPServer
 from ..utils.enums import ContentTypes
 from ..utils.router import Router
-from ..utils.reload_server import ReloadServer, MyHandler
+from ..utils.reload_server import ReloadServer # MyHandler
 from ..utils.template import Template, RequestFiles, StaticTemplate
 
 class Server:
