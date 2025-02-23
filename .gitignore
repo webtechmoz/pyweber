@@ -9,3 +9,4 @@ site/
 # files do ignore
 main.py
 pyproject.toml
+gitpush.py
