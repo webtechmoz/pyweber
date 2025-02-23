@@ -28,20 +28,26 @@ jobs:
         pip install --upgrade pip
         pip install -r requirements.txt
         pip install pytest
-        pip install .  
+        pip install .
 
     - name: Start server
       run: |
         source venv/bin/activate
-        nohup python3 -c "from pyweber.utils.server import Server; Server(None).run()" > server.log 2>&1 &
-        sleep 5  # Espera o servidor iniciar
+        python3 -c "from pyweber.utils.server import Server; Server(None).run()" &  # Inicia em background
+        sleep 2  # Pequena espera antes de checar o status
 
-    - name: Check if server is running
+    - name: Wait for server to be ready
       run: |
-        if ! curl -s http://localhost:5555/; then
-          echo "❌ O servidor não iniciou corretamente!"
-          exit 1
-        fi
+        for i in {1..10}; do
+          if curl -s http://localhost:5555/; then
+            echo "✅ Servidor iniciado com sucesso!"
+            exit 0
+          fi
+          echo "⌛ Aguardando servidor iniciar ($i/10)..."
+          sleep 1
+        done
+        echo "❌ O servidor não iniciou corretamente!"
+        exit 1
 
     - name: Run tests
       run: |
