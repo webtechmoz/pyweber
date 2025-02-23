@@ -1,19 +1,26 @@
 import socket
 import select
 import threading
+import sys
+import time
+import subprocess
 from datetime import datetime
-from http.server import HTTPServer
 from ..utils.enums import ContentTypes
 from ..utils.router import Router
-from ..utils.reload_server import ReloadServer # MyHandler
+from ..utils.reload_server import ReloadServer
 from ..utils.template import Template, RequestFiles, StaticTemplate
 
 class Server:
     def __init__(self, router: Router):
         self.__router = router
         self.__routes: dict[str, Template] = self.__router._Router__routes
+        self.__redirects: dict[str, str] = self.__router._Router__redirects
         self.__connections: list[socket.socket] = []
         self.__reload: bool = False
+        self.not_kill = True
+        self.port = 5555
+        self.route = '/'
+        self.host = 'localhost'
     
     @property
     def __curr_time(self) -> str:
@@ -43,11 +50,16 @@ class Server:
         )
     
     def handle_route(self, request: str) -> bytes:
+        route = request.split(' ')[1]
+
+        if route in self.__redirects:
+            route = self.__redirects[route]
+
         try:
             return self.serve_file(
                 request=request,
                 template=self.add_code_to_template(
-                    template=self.__routes[request.split(' ')[1]]._Template__render_template
+                    template=self.__routes[route]._Template__render_template
                 )
             )
 
@@ -91,8 +103,12 @@ class Server:
                     print(f'Extensão {extension} não disponível para processamento')
         
         else:
-            if route == '/ping' or route in self.__routes:
-                response_code = "200 OK"
+            if route == '/ping' or route in self.__routes or route in self.__redirects:
+                if route in self.__redirects:
+                    response_code = f"302 Found\r\nLocation: {self.__redirects[route]}"
+                
+                else:
+                    response_code = "200 OK"
             
             else:
                 response_code = "404 Not Found"
@@ -137,16 +153,20 @@ class Server:
             
             client_socket.close()
 
-    def create_server(self, host: str = 'localhost', port: int = 5555, route: str = '/') -> None:
+    def create_server(self) -> None:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as socket_server:
-            socket_server.bind((host, port))
-            socket_server.listen(5)
+            try:
+                socket_server.bind((self.host, self.port))
+                socket_server.listen(5)
+            
+            except:
+                pass
 
             # Url to get the site
-            url: str = f'http://{host}:{port}{route}'
-            print(url)
+            url: str = f'http://{self.host}:{self.port}{self.route}'
+            print(f"🌐 Servidor rodando em {url}")
 
-            while True:
+            while self.not_kill:
                 try:
                     rlist, _, _ = select.select([socket_server] + self.__connections, [], [], 1)
 
@@ -163,13 +183,28 @@ class Server:
                 except KeyboardInterrupt:
                     print('Servidor deslidado')
                     break
-    
-    def run(self, route: str = '/', port: int = 5555, reload: bool = True):
-        self.__reload = reload
-        if self.__reload:
-            reload_server = ReloadServer()
-            # server = HTTPServer(("localhost", port+1), MyHandler)
-            threading.Thread(target=reload_server.run, daemon=True).start()
-            # threading.Thread(target=server.serve_forever, daemon=True).start()
         
-        self.create_server(route=route, port=port)
+        print('Finalizou uma tarefa aqui')
+        if not self.not_kill:
+            self.not_kill = not self.not_kill
+            subprocess.Popen([sys.executable, *sys.argv], shell=False).kill()
+
+            time.sleep(2.2)
+            subprocess.Popen([sys.executable, *sys.argv], shell=True)
+    
+    def restart_server(self):
+        self.not_kill = False
+    
+    def subprocess_restart(self):
+        subprocess.run([sys.executable, *sys.argv], shell=True)
+
+    def run(self, route: str = '/', port: int = 5555, reload: bool = False):
+        self.__reload = reload
+        self.port = port
+        self.route = route
+
+        if self.__reload:
+            reload_server = ReloadServer(port=port, event=self.restart_server)
+            threading.Thread(target=reload_server.run, daemon=True).start()
+        
+        self.create_server()

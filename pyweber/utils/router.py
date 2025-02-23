@@ -3,6 +3,7 @@ from ..utils.template import Template, StaticTemplate
 class Router:
     def __init__(self):
         self.__routes: dict[str, Template] = {}
+        self.__redirects: dict[str, str] = {}
     
     @property
     def list_routes(self) -> list[str]:
@@ -44,12 +45,15 @@ class Router:
         return route in self.__routes
     
     def redirect(self, from_route: str, to_route: str) -> str:
-        if from_route not in self.__routes:
-            raise ValueError(f"A routa {from_route} não existe, use add_route para criar")
+        if to_route not in self.__routes:
+            raise ValueError(f"A routa {to_route} não existe, use add_route para criar")
         
-        return self.__get_route(route=to_route)
+        self.__redirects[from_route] = to_route
     
     def __get_route(self, route: str) -> str:
+        if route in self.__redirects:
+            route = self.__redirects[route]
+        
         if route not in self.__routes:
             return StaticTemplate.error_template()
         
