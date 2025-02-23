@@ -33,7 +33,7 @@ jobs:
     - name: Start server
       run: |
         source venv/bin/activate
-        python3 -c "from pyweber.utils.server import Server; Server(None).run()" &  # Inicia em background
+        python3 -c "from pyweber.utils.server import Server; Server(Router()).run()" &  # Inicia em background
         sleep 2  # Pequena espera antes de checar o status
 
     - name: Wait for server to be ready
